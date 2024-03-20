@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.SwitchCompat
 
 class AddActivity : AppCompatActivity() {
     var dbHandler: DatabaseHandler? = null
     var isEditMode = false
     lateinit var btn_delete:AppCompatButton
-
+    lateinit var input_name:EditText
+    lateinit var input_desc:EditText
+lateinit var swt_completed:SwitchCompat
+lateinit var btn_save:AppCompatButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +24,11 @@ class AddActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add)
 
         btn_delete=findViewById(R.id.btn_delete)
+        input_name=findViewById(R.id.input_name)
+        input_desc=findViewById(R.id.input_desc)
+        swt_completed=findViewById(R.id.swt_completed)
+        btn_save=findViewById(R.id.btn_save)
+
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initDB()
@@ -62,8 +73,8 @@ class AddActivity : AppCompatActivity() {
                 success = dbHandler?.updateTask(tasks) as Boolean
             }
 
-            if (success)
-                finish()
+           // if (success)
+                //finish()
         })
 
         btn_delete.setOnClickListener({
